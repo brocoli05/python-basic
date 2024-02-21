@@ -43,6 +43,26 @@ class LinkedList:
          else:
             self.front.pre = None
 
+   ###
+   def push_back(self, data):
+      node = self.Node(data, self.back)
+      if self.front is None:
+         self.back = None
+      else:
+         self.back.next = node
+      self.back = node
+
+   def pop_back(self):
+      if self.front is not None:
+         temp = self.back
+         self.back = self.back.pre
+         if self.front is None:
+            self.back = None
+         else:
+            self.back.next = None
+   
+   
+
    def display_nodes(self):
       current = self.front
       while current is not None:

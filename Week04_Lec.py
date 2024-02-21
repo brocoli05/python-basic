@@ -14,6 +14,26 @@ print(numbers)
 print('bubble sort:', bubble_sort(numbers))
 
 
+def bubble_sort_recursive(numbers, n):
+    if n <= 1:
+        return numbers
+
+    for i in range(n - 1): # range 0 to (n - 1)
+        if numbers[i] > numbers[i + 1]: # If the element at index i is greater than the element at index i + 1, the two elements are swapped.
+            numbers[i], numbers[i + 1] = numbers[i + 1], numbers[i]
+
+    return bubble_sort_recursive(numbers, n - 1) # This recursion continues until the base case is reached.
+
+def bubble_sort_r(numbers):
+    return bubble_sort_recursive(numbers.copy(), len(numbers))
+
+# Example usage:
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print("Before bubble sort(recursion)", numbers)
+sorted_numbers = bubble_sort_r(numbers)
+print("After bubble sort(recursion)", sorted_numbers)
+
+
 def selection_sort(numbers):
    for i in range(len(numbers)):
       smallest = i
@@ -30,6 +50,32 @@ def selection_sort(numbers):
 numbers = [2,5,1,4,6,9,10,8,3]
 print(numbers)
 print('selection sort:', selection_sort(numbers))
+
+
+def selection_sort_recursive(numbers, i=0):
+    if i == len(numbers):
+        return
+
+    smallest = i
+    for j in range(i + 1, len(numbers)):
+        if numbers[j] < numbers[smallest]:
+            smallest = j
+
+    if i != smallest:
+        numbers[i], numbers[smallest] = numbers[smallest], numbers[i]
+
+    selection_sort_recursive(numbers, i + 1)
+
+def selection_sort_r(numbers):
+    selection_sort_recursive(numbers)
+    return numbers
+
+# Example usage:
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print("Before selection sort(recursion)", numbers)
+sorted_numbers = selection_sort_r(numbers.copy())
+print("After selection sort(recursion)", sorted_numbers)
+print(sorted_numbers)
 
 
 ## Merge Sort ----------------------------------------------------------------------
